@@ -1,0 +1,9 @@
+/* polls/static/polls/style.css */
+li a {
+    color: green;
+}
+
+/* додаємо фонове зображення */
+body {
+    background: white url("images/xiao.png") no-repeat;
+}
