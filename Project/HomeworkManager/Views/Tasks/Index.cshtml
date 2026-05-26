@@ -1,0 +1,55 @@
+﻿@model List<HomeworkManager.Models.HomeworkTask>
+
+<h2>Lista zadań domowych</h2>
+
+<a class="btn btn-primary mb-3" asp-action="Create">Dodaj nowe zadanie</a>
+
+<div class="mb-3">
+    <a class="btn btn-outline-secondary" asp-action="Index">Wszystkie</a>
+    <a class="btn btn-outline-primary" asp-action="Index" asp-route-status="Do zrobienia">Do zrobienia</a>
+    <a class="btn btn-outline-warning" asp-action="Index" asp-route-status="W trakcie">W trakcie</a>
+    <a class="btn btn-outline-success" asp-action="Index" asp-route-status="Zrobione">Zrobione</a>
+</div>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Opis</th>
+            <th>Termin wykonania</th>
+            <th>Status</th>
+            <th>Priorytet</th>
+            <th>Akcje</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var task in Model)
+        {
+            <tr>
+                <td>@task.Description</td>
+                <td>@task.DueDate.ToShortDateString()</td>
+                <td>@task.Status</td>
+                <td>
+                    @if (task.Priority == "Wysoki")
+                    {
+                        <span class="badge bg-danger">Wysoki</span>
+                    }
+                    else if (task.Priority == "Średni")
+                    {
+                        <span class="badge bg-warning text-dark">Średni</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-success">Niski</span>
+                    }
+                </td>
+                <td>
+                    <a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-id="@task.Id">Edytuj</a>
+                    <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@task.Id"
+                       onclick="return confirm('Czy na pewno chcesz usunąć to zadanie?');">
+                        Usuń
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

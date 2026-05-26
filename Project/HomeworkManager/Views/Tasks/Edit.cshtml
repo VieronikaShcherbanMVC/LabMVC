@@ -1,0 +1,47 @@
+﻿@model HomeworkManager.Models.HomeworkTask
+
+<h2>Edytuj zadanie</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+        <label asp-for="Description" class="form-label">Opis</label>
+        <input asp-for="Description" class="form-control" />
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="DueDate" class="form-label">Termin wykonania</label>
+        <input asp-for="DueDate" type="date" class="form-control" />
+        <span asp-validation-for="DueDate" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Status" class="form-label">Status</label>
+        <select asp-for="Status" class="form-control">
+            <option>Do zrobienia</option>
+            <option>W trakcie</option>
+            <option>Zrobione</option>
+        </select>
+        <span asp-validation-for="Status" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Priority" class="form-label">Priorytet</label>
+        <select asp-for="Priority" class="form-control">
+            <option value="">-- wybierz priorytet --</option>
+            <option>Niski</option>
+            <option>Średni</option>
+            <option>Wysoki</option>
+        </select>
+        <span asp-validation-for="Priority" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">Zapisz zmiany</button>
+    <a asp-action="Index" class="btn btn-secondary">Powrót</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
